@@ -5,4 +5,5 @@ body {
 cast-media-player {
     --theme-hue: 68;
     --progress-color: rgb(220, 30, 30);
+    --watermark-image: url("../media/watermark.png");
 }
