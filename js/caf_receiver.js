@@ -6,13 +6,13 @@ function addBreakToMedia(mediaInformation) {
   {
     id: 'bc1',
     vastAdsRequest:{
-      adTagUrl: 'http://pulse-demo.videoplaza.tv/proxy/distributor/v2?s=b6df7f40-842a-4fd1-82fd-77c57159c9b5&tt=m&rt=vast_2.0&rnd=' + Math.floor(Math.random()* 10000 + '&xaid=6e4ba7f6-6685-4991-a4f1-c89d2f1b3752')
+      adTagUrl: 'http://pulse-demo.videoplaza.tv/proxy/distributor/v2?s=b6df7f40-842a-4fd1-82fd-77c57159c9b5&tt=m&rt=vast_2.0&rnd=' + Math.floor(Math.random()* 10000) + '&xaid=6e4ba7f6-6685-4991-a4f1-c89d2f1b3752'
     }
   },
   {
     id: 'bc2',
     vastAdsRequest:{
-      adTagUrl: 'http://pulse-demo.videoplaza.tv/proxy/distributor/v2?s=b6df7f40-842a-4fd1-82fd-77c57159c9b5&tt=m&rt=vast_2.0&rnd=' + Math.floor(Math.random()* 10000 + '&xgid=adefeeae-9b51-49a2-be46-13d329119fbe')
+      adTagUrl: 'http://pulse-demo.videoplaza.tv/proxy/distributor/v2?s=b6df7f40-842a-4fd1-82fd-77c57159c9b5&tt=m&rt=vast_2.0&rnd=' + Math.floor(Math.random()* 10000) + '&xgid=adefeeae-9b51-49a2-be46-13d329119fbe'
     }
   }];
   
@@ -20,7 +20,7 @@ function addBreakToMedia(mediaInformation) {
   {
     id: 'b1',
     breakClipIds: ['bc1', 'bc2'],
-    position: 15  //pre-roll position
+    position: 15
   }];
 }
 
