@@ -5,9 +5,8 @@ function addBreakToMedia(mediaInformation) {
   // VMAP Ads -
   // Note - If a vmapAdsRequest is made in conjunction with manual breakClip/break entries, then vmapAdsRequest will be ignored.
   mediaInformation.vmapAdsRequest = {
-    adTagUrl: 'https://pulse-demo.videoplaza.tv/proxy/distributor/v2?rt=vmap_1.0&t=standard-linears,allSupportedAds&bp=10,30&xpb=1&rnd=' + Math.floor(Math.random() * 10000)
+    adTagUrl: createAdTagUrl(vmapParameters.pulseHost, vmapParameters.contentMetaData, vmapParameters.requestSettings)
   }
-
   // // VAST Ads
   // mediaInformation.breakClips = [
   //   {
@@ -66,7 +65,6 @@ function addBreakToMedia(mediaInformation) {
   //   }
   // ];
 }
-
 
 // acquiring a reference to CastReceiverContext, your primary entry point to the whole Receiver SDK
 var context = cast.framework.CastReceiverContext.getInstance();

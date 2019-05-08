@@ -11,7 +11,40 @@
 <body>
   <!--provide the receiver SDK with space to bring-up the default receiver UI -->
   <cast-media-player></cast-media-player>
-  <script src="js/caf_receiver.js"></script>
+  <script src="js/URLBuilder.js"></script>
+  <script src="js/CafReceiver.js"></script>
+  <script>
+    var vmapParameters;
+    vmapParameters = {
+      pulseHost: 'http://pulse-demo.videoplaza.tv',
+      contentMetaData: {
+        tags: ['standard-linears', 'allSupportedAds'],
+        //flags: ['nopostrolls'],
+        category: 'skip-always',
+        contentPartner: 'ignore',
+        contentForm: 'shortForm',
+        id: 'content-id',
+        duration: 1
+      },
+      requestSettings: {
+        enableGdpr: true,
+        gdprConsentString: 'gdpr-string',
+        gdprPersonalDataIncluded: true,
+        startAdTimeout: 1,
+        thirdPartyTimeout: 2,
+        totalPassbackTimeout: 3,
+        width: 54,
+        height: 45,
+        maxBitRate: 574,
+        linearSlotSize: 2,
+        insertionPointFilter: ['onBeforeContent','playbackPosition','onContentEnd'],
+        linearPlaybackPositions: [15, 30],
+        maxLinearBreakDuration: 17,
+        persistentId: 'd42d37b5-015b-4aed-9b14-0892b8cb5fd1'
+        deviceContainer: 'd25462f4-ea19-4eaf-99b9-85de3f29d059'
+      }
+    }
+  </script>
 </body>
 
 </html>
