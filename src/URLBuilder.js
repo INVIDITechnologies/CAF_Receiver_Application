@@ -2,6 +2,8 @@
  * All valid types you can pass in the insertionPointFilter list in requestSettings.
  * These will determine when the received ads are to be played.
  */
+var packageVersion = 'NODE_PKG_VERSION_PLACEHOLDER';
+
 InsertionPointType = {
   /** Request ads to be played before the content, or 'preroll' ads. */
   ON_BEFORE_CONTENT: "onBeforeContent",
@@ -16,15 +18,11 @@ InsertionPointType = {
   // PLAYBACK_TIME: "playbackTime"
 };
 ContentForm = {
-    /** Short form content. Typically used for news summaries, game highlights and the like. */
-    SHORT_FORM: 'shortForm',
-    /** Long form content. Typically used for feature films, TV series, complete games, and the like. */
-    LONG_FORM: 'longForm'
+  /** Short form content. Typically used for news summaries, game highlights and the like. */
+  SHORT_FORM: 'shortForm',
+  /** Long form content. Typically used for feature films, TV series, complete games, and the like. */
+  LONG_FORM: 'longForm'
 };
-
-function getVersion() {
-//ToDo: Implement to get the Library version of caf_receiver
-}
 
 //function createAdTagUrl(contentMetadata, uri) {
 function createAdTagUrl(pulseHost, contentMetadata, requestSettings) {
@@ -32,17 +30,17 @@ function createAdTagUrl(pulseHost, contentMetadata, requestSettings) {
   var uri = pulseHost;
 
   if (uri.indexOf('http://') === -1 && uri.indexOf('https://') === -1) {
-      uri = 'http://' + uri;
+    uri = 'http://' + uri;
   }
 
   if (uri.lastIndexOf('/') !== uri.length - 1) {
-      uri += '/';
+    uri += '/';
   }
 
   uri += 'proxy/distributor/v2?';
   uri += 'rt=vmap_1.0';
   uri += '&pf=cast';
-  uri += '&cv=cast_' + getVersion();
+  uri += '&cv=cast_' + packageVersion;
 
   if (contentMetadata) {
     //start contentMetadata stuff
@@ -164,10 +162,10 @@ function createAdTagUrl(pulseHost, contentMetadata, requestSettings) {
     }
 
     if (requestSettings.hasOwnProperty('persistentId') && requestSettings.persistentId) {
-        uri += '&pid=' + encodeURIComponent(requestSettings.persistentId);
+      uri += '&pid=' + encodeURIComponent(requestSettings.persistentId);
     }
     if (requestSettings.hasOwnProperty('deviceContainer') && requestSettings.deviceContainer) {
-        uri += '&dcid=' + encodeURIComponent(requestSettings.deviceContainer);
+      uri += '&dcid=' + encodeURIComponent(requestSettings.deviceContainer);
     }
   }
   //end requestSettings Stuff

@@ -11,8 +11,7 @@
 <body>
   <!--provide the receiver SDK with space to bring-up the default receiver UI -->
   <cast-media-player></cast-media-player>
-  <script src="js/URLBuilder.js"></script>
-  <script src="js/CafReceiver.js"></script>
+  <script src="dist/caf_receiver-1.0.0.js"></script>
   <script>
     var vmapParameters;
     vmapParameters = {
@@ -38,13 +37,12 @@
         maxBitRate: 574,
         linearSlotSize: 2,
         insertionPointFilter: ['onBeforeContent', 'playbackPosition', 'onContentEnd'],
-        linearPlaybackPositions: [15, 30],
+        linearPlaybackPositions: [20],
         maxLinearBreakDuration: 17,
         persistentId: 'd42d37b5-015b-4aed-9b14-0892b8cb5fd1',
         deviceContainer: 'd25462f4-ea19-4eaf-99b9-85de3f29d059'
       }
     }
-    createAdTagUrl(vmapParameters.pulseHost, vmapParameters.contentMetaData, vmapParameters.requestSettings);
   </script>
 </body>
 
