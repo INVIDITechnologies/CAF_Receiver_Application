@@ -3,10 +3,10 @@
 The vmapParameters object is a combination of pulseHost, contentMetadata and requestSettings that needs to be passed to ad request and filter ads:
 
 * `pulseHost` (required): &lt;string> Full hostname of the Pulse account to use.
-* `contentMetadata` : &lt;object> An object containing parameters that relate to what type of ad is returned. Parameters details are described below ([contentMetadata](#content-meta-data))
-* `requestSettings` : &lt;object> An object containing parameters as described under section ([requestSettings](#request-settings))
+* `contentMetadata` : &lt;object> An object containing parameters that relate to what type of ad is returned. Parameters details are described below under [contentMetadata](#contentMetadata)
+* `requestSettings` : &lt;object> An object containing parameters as described under section [requestSettings](#requestSettings)
 
-## <a name="content-meta-data"></a>contentMetadata
+## contentMetadata
 * `tags` : &lt;string[]> Pulse content tags, used to target specific ads.
 * `flags` : &lt;string[]> Pulse flags. Because flags override Pulse's ad insertion policy, they should be used with caution. For more information talk to your contact at INVIDI. Supported flags: nocom, noprerolls, nomidrolls, nopostrolls, nooverlays.
 * `category` : &lt;string> Content category is used by Pulse to target ads and determine the ad insertion policy. The content category is represented by either its unique id or one of its aliases set in Pulse.
@@ -18,7 +18,7 @@ The vmapParameters object is a combination of pulseHost, contentMetadata and req
 * `duration` : &lt;number>  The duration of the content selected by the viewer. This value cannot be negative.
 * `customParameters` : &lt;object>  The custom parameters to add to the session request. Parameters with names containing invalid characters are omitted. These custom parameters are added to the ad server request URL in the style of "cp.[parameter_name]=[parameter_value]".
 
-## <a name="request-settings"></a>requestSettings
+## requestSettings
 * `width` : &lt;number>  Width in pixels of the video area where ads should be shown.
 * `height` : &lt;number>  Height in pixels of the video area where ads should be shown.
 * `maxBitRate` : &lt;number>  The maximum bitrate of the media files in the ad response.
