@@ -16,10 +16,10 @@ In order to use and test CAF receiver application, following are needed:
 2. Open index.html. Here, you'll need to update the values for vmapParameters. vmapParameters is an object containing parameters that are needed to make ad request and filter ads based on parameters passed.
 The **pulseHost** parameter in the vmapParameters is mandatory. See [VMAP Parameters](docs/vmap-parameters.md) for all possible options you can set.
 3. Build the project:
-    `npm install`
-    `grunt`
+    - npm install
+    - grunt
 4. Deploy:
-Host the CAF Receiver Application on your server to be able to use it with chromecast device.
+    - Host the CAF Receiver Application on your server to be able to use it with chromecast device.
 5. Register your application to be able to run CAF receiver on Chromecast devices. The Cast developer license can be found at https://cast.google.com/publish/#/overview.
 6. After you've registered your application, you'll receive an application ID that your sender application must use to perform API calls, such as to launch a receiver application.
 7. Put the receiver application ID into the sender application code. See https://developers.google.com/cast/docs/downloads for how to add this to the sender application.
