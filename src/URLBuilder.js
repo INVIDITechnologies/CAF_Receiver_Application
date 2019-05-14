@@ -78,37 +78,26 @@ function createAdTagUrl(pulseHost, contentMetadata, requestSettings) {
     if (contentMetadata.hasOwnProperty('duration') && contentMetadata.duration) {
       uri += '&cd=' + contentMetadata.duration;
     }
+
+    if (contentMetadata.hasOwnProperty('customParameters') && Object.keys(contentMetadata.customParameters).length > 0) {
+
+        //				ALLOWED KEY CHARACTERS:
+        //				abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_~-.
+        var regex = /[^A-Za-z0-9_~\-.]/; //Finds not allowed characters
+
+        for (var key in contentMetadata.customParameters) {
+            if (contentMetadata.customParameters.hasOwnProperty(key) && !regex.test(key)) {
+                uri += '&cp.' + key + '=' + encodeURIComponent(contentMetadata.customParameters[key]);
+            }
+        }
+    }
     //end contentMetadata stuff
   }
 
 
   if (requestSettings) {
     //start requestSettings stuff
-    if (typeof requestSettings.enableGdpr === "boolean") {
-      uri += '&gdpr=' + (requestSettings.enableGdpr ? 1 : 0);
-    }
 
-    if (typeof requestSettings.gdprConsentString === "string" &&
-      requestSettings.gdprConsentString.length > 0 &&
-      requestSettings.gdprConsentString.indexOf(' ') === -1) {
-      uri += '&gdpr_consent=' + encodeURIComponent(requestSettings.gdprConsentString);
-    }
-
-    if (typeof requestSettings.gdprPersonalDataIncluded === "boolean") {
-      uri += '&gdpr_pd=' + (requestSettings.gdprPersonalDataIncluded ? 1 : 0);
-    }
-
-    if (requestSettings.hasOwnProperty('startAdTimeout') && requestSettings.startAdTimeout) {
-      uri += '&sat=' + requestSettings.startAdTimeout;
-    }
-
-    if (requestSettings.hasOwnProperty('thirdPartyTimeout') && requestSettings.thirdPartyTimeout) {
-      uri += '&tpt=' + requestSettings.thirdPartyTimeout;
-    }
-
-    if (requestSettings.hasOwnProperty('totalPassbackTimeout') && requestSettings.totalPassbackTimeout) {
-      uri += '&tpat=' + requestSettings.totalPassbackTimeout;
-    }
 
     // TODO: Check with product the behavior when Width is ZERO
     if (requestSettings.hasOwnProperty('width') && requestSettings.width) {
@@ -166,6 +155,31 @@ function createAdTagUrl(pulseHost, contentMetadata, requestSettings) {
     }
     if (requestSettings.hasOwnProperty('deviceContainer') && requestSettings.deviceContainer) {
       uri += '&dcid=' + encodeURIComponent(requestSettings.deviceContainer);
+    }
+    if (typeof requestSettings.enableGdpr === "boolean") {
+      uri += '&gdpr=' + (requestSettings.enableGdpr ? 1 : 0);
+    }
+
+    if (typeof requestSettings.gdprConsentString === "string" &&
+      requestSettings.gdprConsentString.length > 0 &&
+      requestSettings.gdprConsentString.indexOf(' ') === -1) {
+      uri += '&gdpr_consent=' + encodeURIComponent(requestSettings.gdprConsentString);
+    }
+
+    if (typeof requestSettings.gdprPersonalDataIncluded === "boolean") {
+      uri += '&gdpr_pd=' + (requestSettings.gdprPersonalDataIncluded ? 1 : 0);
+    }
+
+    if (requestSettings.hasOwnProperty('startAdTimeout') && requestSettings.startAdTimeout) {
+      uri += '&sat=' + requestSettings.startAdTimeout;
+    }
+
+    if (requestSettings.hasOwnProperty('thirdPartyTimeout') && requestSettings.thirdPartyTimeout) {
+      uri += '&tpt=' + requestSettings.thirdPartyTimeout;
+    }
+
+    if (requestSettings.hasOwnProperty('totalPassbackTimeout') && requestSettings.totalPassbackTimeout) {
+      uri += '&tpat=' + requestSettings.totalPassbackTimeout;
     }
   }
   //end requestSettings Stuff

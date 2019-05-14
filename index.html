@@ -23,15 +23,13 @@
         contentPartner: 'ignore',
         contentForm: 'shortForm',
         id: 'content-id',
-        duration: 1
+        duration: 1,
+        customParameters: {
+          parameter1: 323,
+          parameter2: 'personal'
+        }
       },
       requestSettings: {
-        enableGdpr: true,
-        gdprConsentString: 'gdpr-string',
-        gdprPersonalDataIncluded: true,
-        startAdTimeout: 1,
-        thirdPartyTimeout: 2,
-        totalPassbackTimeout: 3,
         width: 54,
         height: 45,
         maxBitRate: 574,
@@ -40,9 +38,16 @@
         linearPlaybackPositions: [20],
         maxLinearBreakDuration: 17,
         persistentId: 'd42d37b5-015b-4aed-9b14-0892b8cb5fd1',
-        deviceContainer: 'd25462f4-ea19-4eaf-99b9-85de3f29d059'
+        deviceContainer: 'd25462f4-ea19-4eaf-99b9-85de3f29d059',
+        enableGdpr: true,
+        gdprConsentString: 'gdpr-string',
+        gdprPersonalDataIncluded: true,
+        startAdTimeout: 1,
+        thirdPartyTimeout: 2,
+        totalPassbackTimeout: 3
       }
     }
+    // createAdTagUrl(vmapParameters.pulseHost, vmapParameters.contentMetaData, vmapParameters.requestSettings)
   </script>
 </body>
 
