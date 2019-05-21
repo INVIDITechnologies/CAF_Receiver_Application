@@ -81,15 +81,15 @@ function createAdTagUrl(pulseHost, contentMetadata, requestSettings) {
 
     if (contentMetadata.hasOwnProperty('customParameters') && Object.keys(contentMetadata.customParameters).length > 0) {
 
-        //				ALLOWED KEY CHARACTERS:
-        //				abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_~-.
-        var regex = /[^A-Za-z0-9_~\-.]/; //Finds not allowed characters
+      //				ALLOWED KEY CHARACTERS:
+      //				abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_~-.
+      var regex = /[^A-Za-z0-9_~\-.]/; //Finds not allowed characters
 
-        for (var key in contentMetadata.customParameters) {
-            if (contentMetadata.customParameters.hasOwnProperty(key) && !regex.test(key)) {
-                uri += '&cp.' + key + '=' + encodeURIComponent(contentMetadata.customParameters[key]);
-            }
+      for (var key in contentMetadata.customParameters) {
+        if (contentMetadata.customParameters.hasOwnProperty(key) && !regex.test(key)) {
+          uri += '&cp.' + key + '=' + encodeURIComponent(contentMetadata.customParameters[key]);
         }
+      }
     }
     //end contentMetadata stuff
   }
