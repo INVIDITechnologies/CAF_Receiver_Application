@@ -1,0 +1,10 @@
+*.DS_Store
+.profile
+
+#IntelliJ project folder
+*.iml
+.idea/
+
+package-lock.json
+node_modules
+dist
