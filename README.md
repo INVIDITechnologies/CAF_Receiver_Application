@@ -1,39 +1,42 @@
-# CAF Receiver Application
+# Cast Application Framework (CAF) Receiver Application
 
 ## Introduction
 
-This Library allows you to serve VMAP Ads from Pulse to chromecast device.
+This library allows you to serve VMAP ads from Pulse to a Chromecast device.
 
-## Pre-requisite:
+## Prerequisites
 
-In order to use and test CAF receiver application, following are needed:
-1\. Purchase and install chromecast device.
-2\. Run Google Home app or chrome extension [Google Home](https://www.google.com/chromecast/setup/) to setup chromecast device.
-3\. Register your chromecast device as described [Here](https://developers.google.com/cast/docs/registration#devices) so that you can use it for testing.
-4\. Create a sender application which will have the cast button and user controls such as play/pause to control the content/ad that is playing on chromecast reciever.[See https://developers.google.com/cast/docs/developers#app_components for more details.]
+In order to use and test a CAF receiver application, you need the following:
 
-## Getting started:
+1. Purchase and install a Chromecast device. 
+2. Run the [Google Home](https://www.google.com/chromecast/setup/) app to set up the Chromecast device.
+3. Register your Chromecast device as described at <https://developers.google.com/cast/docs/registration#devices>, so that you can use it for testing. 
+4. Create a sender application which has the Cast button and user controls, such as play/pause, to control the content/ad that is playing on the Chromecast receiver. See <https://developers.google.com/cast/docs/developers#app_components> for more details.
 
-1.  Clone/Download this Library.
-2.  Open index.html. Here, you'll need to update the values for vmapParameters. vmapParameters is an object containing parameters that are needed to make ad request and filter ads based on parameters passed.
-    The **pulseHost** parameter in the vmapParameters is mandatory. See [VMAP Parameters](docs/vmap-parameters.md) for all possible options you can set.
+## Getting Started
+
+1.  Clone/Download this library.
+2.  Open the [index.html](index.html) file and update the values for `vmapParameters`. `vmapParameters` is an object that contains the parameters needed to make an ad request and to filter the ads based on those parameters. The `pulseHost` parameter is mandatory. See [VMAP Parameters](docs/vmap-parameters.md) for all the possible options you can set.
 3.  Build the project:
     -   npm install
     -   grunt
 4.  Deploy:
-    -   Host the CAF Receiver Application on your server to be able to use it with chromecast device.
-5.  Register your application to be able to run CAF receiver on Chromecast devices. The Cast developer license can be found at <https://cast.google.com/publish/#/overview>.
-6.  After you've registered your application, you'll receive an application ID that your sender application must use to perform API calls, such as to launch a receiver application.
-7.  Put the receiver application ID into the sender application code. See <https://developers.google.com/cast/docs/downloads> for how to add this to the sender application.
+    -   Host the CAF receiver application on your server in order to use it with the Chromecast device.
+5. Register your application in order to run the CAF receiver on Chromecast devices. You can find the Cast developer license at <https://cast.google.com/publish/#/overview>. After registering your application, you receive an application ID that your sender application has to use to perform API calls, such as to launch a receiver application.
+6. Put the receiver application ID into the sender application code. See <https://developers.google.com/cast/docs/downloads> for more details.
 
-## How to Test:
+## Testing
 
-1.  Launch your Sender application
-2.  Click the cast button on application.
-3.  Select a cast device (the one you registered for testing)
-4.  choose video content to play.
-5.  You should see preroll/midroll/postroll ads as per what you passed in vmapParameters.
+1. Launch your sender application.
+2. Click the Cast button in the application.
+3. Select the Cast device that you registered for testing.
+4. Choose which video content to play.
 
-## Publish CAF Receiver Application:
+### Result
 
-See <https://developers.google.com/cast/docs/registration#publish_your_application>
+You should now see preroll/midroll/postroll ads, based on what you passed in the `vmapParameters`.
+
+
+## Publishing the CAF Receiver Application
+
+To publish your application, follow the steps described at <https://developers.google.com/cast/docs/registration#publish_your_application>.
