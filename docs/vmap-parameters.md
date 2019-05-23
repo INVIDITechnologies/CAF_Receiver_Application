@@ -1,41 +1,49 @@
 # VMAP Parameters
 
-The vmapParameters object is a combination of pulseHost, contentMetadata and requestSettings that needs to be passed to ad request and filter ads:
+The `vmapParameters` object is a combination of `pulseHost`, `contentMetadata`, and `requestSettings` that need to be passed in to make an ad request and to filter ads.
 
--   `pulseHost` (required): <string> Full hostname of the Pulse account to use.
--   `contentMetadata` : <object> An object containing parameters that relate to what type of ad is returned. Parameters details are described below under [contentMetadata](#contentMetadata)
--   `requestSettings` : <object> An object containing parameters as described under section [requestSettings](#requestSettings)
+-   `pulseHost` (string): Required, full hostname of your Pulse account.
+-   `contentMetadata` (object): An object containing the parameters related to the specific video content's rules, targeting options, and metadata. Parameter details are described below under **contentMetadata**.
+-   `requestSettings` (object): An object containing the parameters related to the environment in which the requested ad will play. Parameter details are described below under **requestSettings**.
 
 ## contentMetadata
 
--   `tags` : &lt;string\[]> Pulse content tags, used to target specific ads.
--   `flags` : &lt;string\[]> Pulse flags. Because flags override Pulse's ad insertion policy, they should be used with caution. For more information talk to your contact at INVIDI. Supported flags: nocom, noprerolls, nomidrolls, nopostrolls, nooverlays.
--   `category` : <string> Content category is used by Pulse to target ads and determine the ad insertion policy. The content category is represented by either its unique id or one of its aliases set in Pulse.
--   `contentPartner` : <string> Pulse content partner. Content partners can be used by Pulse to target ads. The content partner is represented by either its unique id or one of its aliases set in Pulse.
--   `contentForm` : <string> Content Form indicates if the video content is short or long. Depending on this value, different ad insertion policies may apply to the ad request. Possible values are :
-    1.  'shortForm' [Short form content. Typically used for news summaries, game highlights and the like.]
-    2.  'longForm' [Long form content. Typically used for feature films, TV series, complete games, and the like.]
--   `id` : <string>  Pulse content id. Id is used to identify the content to third parties.
--   `duration` : <number>  The duration of the content selected by the viewer. This value cannot be negative.
--   `customParameters` : <object>  The custom parameters to add to the session request. Parameters with names containing invalid characters are omitted. These custom parameters are added to the ad server request URL in the style of "cp.[parameter_name]=[parameter_value]".
+-   `tags` (string): Pulse content tags, used for targeting purposes.
+-   `flags` (string): Pulse flags, used to apply special rules and conditions to an ad request. Flags override Pulse's ad insertion policy, so they should be used with caution. For more information, talk to your contact at INVIDI. Supported flags are: 
+
+    - `nocom`: No ads are returned at all
+    - `noprerolls`: No pre-rolls are returned
+    - `nomidrolls`: No mid-rolls are returned 
+    - `nopostrolls`: No post-rolls are returned
+    - `nooverlays`: No overlays are returned
+
+-   `category` (string): Pulse content category, used to associate content with a category that has been defined for your account in the Pulse UI, and determine the ad insertion policy. The content category is represented either by its unique ID or one of its aliases set in Pulse.
+-   `contentPartner` (string): Pulse content partner, used for targeting purposes. The content partner is represented either by its unique ID or one of its aliases set in Pulse.
+-   `contentForm` (string): Content form indicates whether the video content is short or long. Depending on this value, different ad insertion policies may apply to the ad request. Possible values are:
+    -  `shortForm`(string): Short form content. Typically used for news summaries, game highlights and similar.
+    -  `longForm`(string): Long form content. Typically used for feature films, TV series, complete games and similar.
+-   `id` (string):  Pulse content ID, used for forwarding the ID of the video content to third party trackers. 
+-   `duration` (number):  The total duration of the video content selected by the viewer. This value cannot be negative.
+-   `customParameters` (object): The custom parameters to add to the session request. Parameters with names containing invalid characters are omitted. These custom parameters are added to the ad request URL in the form of "cp.[parameter_name]=[parameter_value]".
 
 ## requestSettings
 
--   `width` : <number>  Width in pixels of the video area where ads should be shown.
--   `height` : <number>  Height in pixels of the video area where ads should be shown.
--   `maxBitRate` : <number>  The maximum bitrate of the media files in the ad response.
--   `linearSlotSize` : <number>  Overrides the number of linear ads per slot.
--   `insertionPointFilter` : &lt;string\[]> These will determine when the received ads are to be played.If not set, the request is for every kind of insertion point. If set, only the types provided are requested. Possible values are:
-    1.  'onBeforeContent' [Request ads to be played before the content, or 'preroll' ads.]
-    2.  'playbackPosition' [Request ads to be played during the content, or 'midroll' ads; don't forget to specify which positions the ads are to be played at, in the linearPlaybackPositions field.]
-    3.  'onContentEnd' [Request ads to be played after the content, or 'postroll' ads.]
--   `linearPlaybackPositions` : &lt;number\[]> An array of numbers which defines at what points in time linear ads should be shown.
--   `maxLinearBreakDuration` : <number>  The maximum length (in seconds) of linear ad breaks.
--   `persistentId` : <string> Pulse persistent id; used for unique user tracking.
--   `deviceContainer` : <string> Pulse device container.
--   `enableGdpr` : <Boolean> Set to true if the ad request is subject to GDPR regulations. See [API Documentation](<https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/v1.1 Implementation Guidelines.md>) for more information.
--   `gdprConsentString` : &lt;string\[]> Pass in the user's URL safe and base64 encoded consent string related to GDPR regulations, which may be obtained through the Consent Management Provider (CMP) JS API. This string is built up according to the data structure developed by the GDPR Consent Working Group under the auspices of IAB Europe. The data structure specification can be found at [Consent string and vendor list formats v1.1 Final](<https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Consent string and vendor list formats v1.1 Final.md>). For more information on the API, refer to [CMP JS API v1.1 Final](<https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/CMP JS API v1.1 Final.md>) .
--   `gdprPersonalDataIncluded` : <Boolean> Set to true if you are passing in personal information when creating the ad request to Pulse. The only location where it is possible to pass in personal information is in the ([customParameters](#customParameters))
--   `startAdTimeout` : <number> The maximum amount of time the player or integration should wait for the ad to start playback before reporting inventory.
--   `thirdPartyTimeout` : <number> The maximum amount of time the player or integration should wait to unwrap and load a third party ad before reporting inventory.
--   `totalPassbackTimeout` : <number> The maximum amount of time the passback player should wait to find a working ad in the passback chain before moving to the last ad in the chain or reporting inventory.
+-   `width` (number):  The width of the video player, in pixels. This is used to determine the best size of the delivered media files.
+-   `height` (number): The height of the video player, in pixels. This is used to determine the best size of the delivered media files.
+-   `maxBitRate` (number): The maximum bitrate in kbps of the media files in the ad response.
+-   `linearSlotSize` (number): This overrides the number of linear ads per slot.
+-   `insertionPointFilter` (string): This is the point, in relation to the main content, where the ad spot should be inserted. If not set, the request is for every kind of insertion point. If set, only the types provided are requested. Possible values are:
+    -  `onBeforeContent` (string): Request linear ads that are played before the main content starts (pre-rolls).
+    -  `playbackPosition` (string): Request linear ads that are to be displayed at a certain point during the main content (mid-rolls). This value requires that you also set the playback position in the `linearPlaybackPositions` field.
+    -  `onContentEnd` (string): Request linear ads that are played after the main content ends (post-rolls).
+-   `linearPlaybackPositions` (number): An array of numbers which defines at what points in time linear ads should be shown.
+-   `maxLinearBreakDuration` (number): The maximum duration for a linear ad break in seconds.
+-   `persistentId` (string): Pulse persistent identifier, used for unique user tracking.
+-   `deviceContainer` (string): Pulse device container.
+-   `enableGdpr` (boolean): This parameter indicates whether an ad request is subject to GDRP regulations. See [IAB Europe Transparency and Consent Framework Implementation Guidelines](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/v1.1 Implementation Guidelines.md) for more information.
+-   `gdprConsentString` (string): Set this parameter to the user's URL safe and base64 encoded consent string, which you retrieve from the Consent Management Provider (CMP) JS API. The consent string is built up according to the following specification: [Consent String and Vendor List Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Consent string and vendor list formats v1.1 Final.md). For more information on the API, see [Consent Management Provider JavaScript API v1.1](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/CMP JS API v1.1 Final.md).
+-   `gdprPersonalDataIncluded` (boolean): This parameter indicates whether the ad request's URL parameters contain any personal data. The only location where you can enter personal data in the request is through the custom parameters of the content metadata settings.
+-   `startAdTimeout` (number): This parameter allows you to override the start ad timeout set by your Account Manager when first setting up your Pulse account, and indicates the maximum amount of time, in seconds, that the player or integration should wait for the ad to start playback before reporting inventory.
+-   `thirdPartyTimeout` (number): This parameter allows you to override the third party timeout set by your Account Manager when first setting up your Pulse account, and indicates the maximum amount of time, in seconds, that the player or integration should wait to unwrap and load a third party ad before reporting inventory.
+-   `totalPassbackTimeout` (number): This parameter allows you to override the total passback timeout set by your Account Manager when first setting up your Pulse account, and indicates the maximum amount of time, in seconds, that the passback player should wait to find a working ad in the passback chain before moving to the last ad in the chain or reporting inventory.
+
