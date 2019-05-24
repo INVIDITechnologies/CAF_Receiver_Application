@@ -47,3 +47,5 @@ The `vmapParameters` object is a combination of `pulseHost`, `contentMetadata`, 
 -   `thirdPartyTimeout` (number): This parameter allows you to override the third party timeout set by your Account Manager when first setting up your Pulse account, and indicates the maximum amount of time, in seconds, that the player or integration should wait to unwrap and load a third party ad before reporting inventory.
 -   `totalPassbackTimeout` (number): This parameter allows you to override the total passback timeout set by your Account Manager when first setting up your Pulse account, and indicates the maximum amount of time, in seconds, that the passback player should wait to find a working ad in the passback chain before moving to the last ad in the chain or reporting inventory.
 
+## Note
+Please make sure to pass valid values in valid format as described above for each parameter, otherwise that specific value will be ignored and a warning will be logged.
