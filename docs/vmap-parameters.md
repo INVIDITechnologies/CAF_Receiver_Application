@@ -8,8 +8,8 @@ The `vmapParameters` object is a combination of `pulseHost`, `contentMetadata`, 
 
 ## contentMetadata
 
--   `tags` (string): Pulse content tags, used for targeting purposes.
--   `flags` (string): Pulse flags, used to apply special rules and conditions to an ad request. Flags override Pulse's ad insertion policy, so they should be used with caution. For more information, talk to your contact at INVIDI. Supported flags are: 
+-   `tags` (string[]): Pulse content tags, used for targeting purposes.
+-   `flags` (string[]): Pulse flags, used to apply special rules and conditions to an ad request. Flags override Pulse's ad insertion policy, so they should be used with caution. For more information, talk to your contact at INVIDI. Supported flags are: 
 
     - `nocom`: No ads are returned at all
     - `noprerolls`: No pre-rolls are returned
@@ -32,11 +32,11 @@ The `vmapParameters` object is a combination of `pulseHost`, `contentMetadata`, 
 -   `height` (number): The height of the video player, in pixels. This is used to determine the best size of the delivered media files.
 -   `maxBitRate` (number): The maximum bitrate in kbps of the media files in the ad response.
 -   `linearSlotSize` (number): This overrides the number of linear ads per slot.
--   `insertionPointFilter` (string): This is the point, in relation to the main content, where the ad spot should be inserted. If not set, the request is for every kind of insertion point. If set, only the types provided are requested. Possible values are:
+-   `insertionPointFilter` (string[]): This is the point, in relation to the main content, where the ad spot should be inserted. If not set, the request is for every kind of insertion point. If set, only the types provided are requested. Possible values are:
     -  `onBeforeContent` (string): Request linear ads that are played before the main content starts (pre-rolls).
     -  `playbackPosition` (string): Request linear ads that are to be displayed at a certain point during the main content (mid-rolls). This value requires that you also set the playback position in the `linearPlaybackPositions` field.
     -  `onContentEnd` (string): Request linear ads that are played after the main content ends (post-rolls).
--   `linearPlaybackPositions` (number): An array of numbers which defines at what points in time linear ads should be shown.
+-   `linearPlaybackPositions` (number[]): An array of numbers which defines at what points in time linear ads should be shown.
 -   `maxLinearBreakDuration` (number): The maximum duration for a linear ad break in seconds.
 -   `persistentId` (string): Pulse persistent identifier, used for unique user tracking.
 -   `deviceContainer` (string): Pulse device container.
