@@ -16,14 +16,14 @@
     var vmapParameters;
     vmapParameters = {
       pulseHost: 'http://pulse-demo.videoplaza.tv',
-      contentMetaData: {
+      contentMetadata: {
+        // flags: ['nopostrolls'],
         tags: ['standard-linears', 'allSupportedAds'],
-        //flags: ['nopostrolls'],
         category: 'skip-always',
         contentPartner: 'ignore',
         contentForm: 'shortForm',
         id: 'content-id',
-        duration: 1,
+        duration: 2,
         customParameters: {
           parameter1: 323,
           parameter2: 'personal'
@@ -33,7 +33,7 @@
         width: 54,
         height: 45,
         maxBitRate: 574,
-        linearSlotSize: 2,
+        linearSlotSize: 4,
         insertionPointFilter: ['onBeforeContent', 'playbackPosition', 'onContentEnd'],
         linearPlaybackPositions: [20,40],
         maxLinearBreakDuration: 50,
@@ -49,5 +49,4 @@
     }
   </script>
 </body>
-
 </html>

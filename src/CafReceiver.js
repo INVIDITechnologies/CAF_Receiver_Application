@@ -4,7 +4,7 @@
 function addBreakToMedia(mediaInformation) {
   // VMAP Ads -
   mediaInformation.vmapAdsRequest = {
-    adTagUrl: createAdTagUrl(vmapParameters.pulseHost, vmapParameters.contentMetaData, vmapParameters.requestSettings)
+    adTagUrl: createAdTagUrl(vmapParameters.pulseHost, vmapParameters.contentMetadata, vmapParameters.requestSettings)
   }
 }
 
@@ -26,13 +26,13 @@ playerManager.setMessageInterceptor(
 //Workaround to fix issue where user doesn't have control to play/pause ads or content video if number of ads per session exceeds 6. (https://issuetracker.google.com/issues/132323230)
 playerManager.setMessageInterceptor(cast.framework.messages.MessageType.MEDIA_STATUS,
   message => {
-    if(message.media && message.media.breakClips){
+    if (message.media && message.media.breakClips) {
       let newMessage = {};
       Object.assign(newMessage, message);
       let newMedia = {}
       Object.assign(newMedia, message.media);
       newMedia.breakClips = [];
-      for(i=0; i < message.media.breakClips.length; i++){
+      for (i = 0; i < message.media.breakClips.length; i++) {
         let newClip = {};
         Object.assign(newClip, message.media.breakClips[i]);
         newClip.vastAdsRequest = undefined;
@@ -46,4 +46,4 @@ playerManager.setMessageInterceptor(cast.framework.messages.MessageType.MEDIA_ST
 );
 
 // //Initializing the SDK by calling start() on CastReceiverContext
- context.start();
+context.start();
