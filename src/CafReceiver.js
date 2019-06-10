@@ -6,6 +6,7 @@ function addBreakToMedia(mediaInformation) {
   mediaInformation.vmapAdsRequest = {
     adTagUrl: createAdTagUrl(vmapParameters.pulseHost, vmapParameters.contentMetadata, vmapParameters.requestSettings)
   }
+
 }
 
 // acquiring a reference to CastReceiverContext, your primary entry point to the whole Receiver SDK
@@ -22,6 +23,18 @@ playerManager.setMessageInterceptor(
     return loadRequestData;
   }
 );
+
+// // Using setBreakClipLoadInterceptor to modify/remove breakClip
+// const breakManager = playerManager.getBreakManager();
+// breakManager.setBreakClipLoadInterceptor((breakClip, breakCtx) => {
+//   // To remove breakClips
+//   let newBreak = {};
+//   Object.assign(newBreak, breakCtx.break);
+//   if (newBreak.position > 15 && newBreak.position == -1)
+//     return null;
+//   else
+//     return breakClip;
+// });
 
 //Workaround to fix issue where user doesn't have control to play/pause ads or content video if number of ads per session exceeds 6. (https://issuetracker.google.com/issues/132323230)
 playerManager.setMessageInterceptor(cast.framework.messages.MessageType.MEDIA_STATUS,
@@ -45,5 +58,5 @@ playerManager.setMessageInterceptor(cast.framework.messages.MessageType.MEDIA_ST
   }
 );
 
-// //Initializing the SDK by calling start() on CastReceiverContext
+//Initializing the SDK by calling start() on CastReceiverContext
 context.start();

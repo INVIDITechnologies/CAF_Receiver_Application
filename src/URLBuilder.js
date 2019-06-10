@@ -178,18 +178,6 @@ function createAdTagUrl(pulseHost, contentMetadata, requestSettings) {
       uri += '&gdpr_pd=' + (requestSettings.gdprPersonalDataIncluded ? 1 : 0);
     }
 
-    if (requestSettings.hasOwnProperty('startAdTimeout') && validateNumber('requestSettings.startAdTimeout', requestSettings.startAdTimeout)) {
-      uri += '&sat=' + requestSettings.startAdTimeout;
-    }
-
-    if (requestSettings.hasOwnProperty('thirdPartyTimeout') && validateNumber('requestSettings.thirdPartyTimeout', requestSettings.thirdPartyTimeout)) {
-      uri += '&tpt=' + requestSettings.thirdPartyTimeout;
-    }
-
-    if (requestSettings.hasOwnProperty('totalPassbackTimeout') && validateNumber('requestSettings.totalPassbackTimeout', requestSettings.totalPassbackTimeout)) {
-      uri += '&tpat=' + requestSettings.totalPassbackTimeout;
-    }
-
     function addLinearPlaybackPosition() {
       if (requestSettings.hasOwnProperty('linearPlaybackPositions') && validateArray('requestSettings.linearPlaybackPositions', requestSettings.linearPlaybackPositions)) {
         var breakPoints = [];
