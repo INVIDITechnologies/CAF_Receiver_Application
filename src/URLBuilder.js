@@ -1,4 +1,4 @@
-var packageVersion = 'NODE_PKG_VERSION_PLACEHOLDER';
+const packageVersion = 'NODE_PKG_VERSION_PLACEHOLDER';
 
 /**
  * All valid types you can pass in the insertionPointFilter list in requestSettings.
@@ -7,8 +7,8 @@ var packageVersion = 'NODE_PKG_VERSION_PLACEHOLDER';
 InsertionPointType = {
   /** Request ads to be played before the content, or 'preroll' ads. */
   ON_BEFORE_CONTENT: "onBeforeContent",
-  /** Request ads to be played during the content, or 'midroll' ads; don't forget to specify which positions the ads are to be played at, in the linearPlaybackPositions field.
-      Additionality, specifying positions in the nonLinearPlaybackPositions field will request overlay ads. */
+  /** Request ads to be played during the content, or 'midroll' ads; don't forget to 
+      specify which positions the ads are to be played at, in the linearPlaybackPositions field.*/
   PLAYBACK_POSITION: "playbackPosition",
   /** Request ads to be played after the content, or 'postroll' ads. */
   ON_CONTENT_END: "onContentEnd",
@@ -21,9 +21,9 @@ ContentForm = {
   LONG_FORM: 'longForm'
 };
 
-function createAdTagUrl(pulseHost, contentMetadata, requestSettings) {
+function createPulseVmapRequestUrl(pulseHost, contentMetadata, requestSettings) {
 
-  var uri = pulseHost;
+  let uri = pulseHost;
 
   if (uri.indexOf('http://') === -1 && uri.indexOf('https://') === -1) {
     uri = 'http://' + uri;
@@ -52,7 +52,7 @@ function createAdTagUrl(pulseHost, contentMetadata, requestSettings) {
     }
 
     //start shares stuff
-    var shares = '';
+    let shares = '';
     if (contentMetadata.hasOwnProperty('category') && validateString('contentMetadata.category', contentMetadata.category)) {
       shares += contentMetadata.category;
     }
@@ -82,9 +82,9 @@ function createAdTagUrl(pulseHost, contentMetadata, requestSettings) {
       validateCustomParameters('contentMetadata.customParameters',contentMetadata.customParameters);
       //				ALLOWED KEY CHARACTERS:
       //				abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_~-.
-      var regex = /[^A-Za-z0-9_~\-.]/; //Finds not allowed characters
+      const regex = /[^A-Za-z0-9_~\-.]/; //Finds not allowed characters
 
-      for (var key in contentMetadata.customParameters) {
+      for (let key in contentMetadata.customParameters) {
         if (contentMetadata.customParameters.hasOwnProperty(key) && !regex.test(key)) {
           uri += '&cp.' + key + '=' + encodeURIComponent(contentMetadata.customParameters[key]);
         }
@@ -96,9 +96,7 @@ function createAdTagUrl(pulseHost, contentMetadata, requestSettings) {
   //CustomParameters validation
   function validateCustomParameters(key, value) {
     if (Object.prototype.toString.call(value) === '[object Object]') {
-      for (var prop in value) {
-
-        // TODO: SYNC WITH PRODUCT on should we skip properties with empty key or throw ERROR
+      for (let prop in value) {
         if (prop) {
           if (typeof(prop) !== 'string') {
             console.warn("InvalidType of contentMetadata.customParameters property " + prop + ". Should be string but is " + typeof(contentMetadata.customParameters[prop]));
@@ -134,8 +132,8 @@ function createAdTagUrl(pulseHost, contentMetadata, requestSettings) {
     }
 
     if (requestSettings.hasOwnProperty('insertionPointFilter') && validateArray('requestSettings.insertionPointFilter', requestSettings.insertionPointFilter)) {
-      var ticketTypes = [];
-      for (var i = 0; i < requestSettings.insertionPointFilter.length; i++) {
+      let ticketTypes = [];
+      for (let i = 0; i < requestSettings.insertionPointFilter.length; i++) {
         if (validateInsertionPointFilter(requestSettings.insertionPointFilter[i], i)) {
           ticketTypes.push(translateInsertionPointType(requestSettings.insertionPointFilter[i]));
           if (requestSettings.insertionPointFilter[i] === InsertionPointType.PLAYBACK_POSITION) {
@@ -180,7 +178,7 @@ function createAdTagUrl(pulseHost, contentMetadata, requestSettings) {
 
     function addLinearPlaybackPosition() {
       if (requestSettings.hasOwnProperty('linearPlaybackPositions') && validateArray('requestSettings.linearPlaybackPositions', requestSettings.linearPlaybackPositions)) {
-        var breakPoints = [];
+        let breakPoints = [];
         for (j = 0; j < requestSettings.linearPlaybackPositions.length; j++) {
           if (typeof(requestSettings.linearPlaybackPositions[j]) === 'number') {
             breakPoints.push(requestSettings.linearPlaybackPositions[j]);
@@ -207,7 +205,7 @@ function createAdTagUrl(pulseHost, contentMetadata, requestSettings) {
   }
 
   function validateNumber(key, value) {
-    var isValid = false;
+    let isValid = false;
     if (typeof(value) === "number") {
       if (value >= 0) {
         isValid = true;
@@ -221,7 +219,7 @@ function createAdTagUrl(pulseHost, contentMetadata, requestSettings) {
   }
 
   function validateString(key, value) {
-    var isValid = false;
+    let isValid = false;
     if (typeof(value) === "string") {
       if (value.length > 0) {
         isValid = true;
@@ -250,7 +248,7 @@ function createAdTagUrl(pulseHost, contentMetadata, requestSettings) {
         value === InsertionPointType.ON_CONTENT_END) {
         return true;
       } else {
-        console.warn("Invalid Value of requestSettings.insertionPointFilter at index " + index + ". Accepted values are onBeforeContent, playbackPosition, onContentEnd, onPause or playbackTime, but is " + value);
+        console.warn("Invalid Value of requestSettings.insertionPointFilter at index " + index + ". Accepted values are onBeforeContent, playbackPosition or onContentEnd, but is " + value);
       }
     } else {
       console.warn("Invalid type of requestSettings.insertionPointFilter at index " + index + ". Should be of type string but is " + typeof(value));
@@ -275,10 +273,6 @@ function createAdTagUrl(pulseHost, contentMetadata, requestSettings) {
         return 'm';
       case InsertionPointType.ON_CONTENT_END:
         return 'po';
-        // case InsertionPointType.ON_PAUSE:   //Pause ads are not supported for VMAP format
-        //     return 'pa';
-        // case InsertionPointType.PLAYBACK_TIME:  //To check if google cast framework supports overlay ads in VMAP format. If, yes then we may support it later.
-        //     return 'o';
       default:
         throw new Error('InvalidInsertionPointType passed');
     }

@@ -13,10 +13,6 @@ module.exports = function(grunt) {
         src: ['dist/']
     },
     concat: {
-      options: {
-        // define a string to put between each file in the concatenated output
-        separator: ';'
-      },
       dist: {
         // the files to concatenate
         src: ['src/*.js'],
@@ -24,20 +20,20 @@ module.exports = function(grunt) {
         dest: 'dist/<%= pkg.name %>-<%= pkg.version %>.js'
       }
     },
-'string-replace': {
-  single_file: {
-    files: {
-      'dist/<%= pkg.name %>-<%= pkg.version %>.js': 'dist/<%= pkg.name %>-<%= pkg.version %>.js'
-    },
-      options: {
-        replacements: [{
-          pattern: 'NODE_PKG_VERSION_PLACEHOLDER',
-          replacement: '<%= pkg.version %>'
-        }]
+    'string-replace': {
+      single_file: {
+        files: {
+          'dist/<%= pkg.name %>-<%= pkg.version %>.js': 'dist/<%= pkg.name %>-<%= pkg.version %>.js'
+        },
+        options: {
+          replacements: [{
+            pattern: 'NODE_PKG_VERSION_PLACEHOLDER',
+            replacement: '<%= pkg.version %>'
+          }]
+        }
       }
     }
-  }
-
   });
+  
   grunt.registerTask('default', ['clean','concat','string-replace']);
 };
