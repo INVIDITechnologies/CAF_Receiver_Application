@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This library allows you to serve VMAP ads from Pulse to a Chromecast device through google's CAF Receiver SDK.
+This library allows you to serve VMAP ads from Pulse to a Chromecast device through Google's CAF Receiver SDK.
 
 ## Prerequisites
 
@@ -15,7 +15,9 @@ In order to use and test a CAF receiver application, you need the following:
 
 ## Getting Started
 
-1.  Clone/Download this library. To know more about project structure and cutomization, please see [Project Structure](docs/project-structure.md)
+For more information on the project structure and customization, see [Project Structure](docs/project-structure.md).
+
+1.  Clone/Download this library. 
 2.  Open the [index.html](index.html) file and update the values for `vmapParameters`. `vmapParameters` is an object that contains the parameters needed to make an ad request and to filter the ads based on those parameters. The `pulseHost` parameter is mandatory. See [VMAP Parameters](docs/vmap-parameters.md) for all the possible options you can set.
 3.  Build the project:
     -   npm install
@@ -38,7 +40,7 @@ You should now see preroll/midroll/postroll ads, based on what you passed in the
 
 ## Debugging a CAF Receiver Application
 
-Open a browser window and point it to the IP address of the Chromecast unit (port 9222). For more information on how to debug from this point, go to Googleâ€™s Chromecast Developer Guide topic on [debugging](https://developers.google.com/cast/docs/debugging).
+Open a browser window and point it to the IP address of the Chromecast unit (port 9222). For more information on how to debug from this point, go to Google’s Chromecast Developer Guide topic on [debugging](https://developers.google.com/cast/docs/debugging).
 
 ## Publishing the CAF Receiver Application
 
