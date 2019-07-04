@@ -15,7 +15,6 @@ The `vmapParameters` object is a combination of `pulseHost`, `contentMetadata`, 
     - `noprerolls`: No pre-rolls are returned
     - `nomidrolls`: No mid-rolls are returned 
     - `nopostrolls`: No post-rolls are returned
-    - `nooverlays`: No overlays are returned
 
 -   `category` (string): Pulse content category, used to associate content with a category that has been defined for your account in the Pulse UI, and determine the ad insertion policy. The content category is represented either by its unique ID or one of its aliases set in Pulse.
 -   `contentPartner` (string): Pulse content partner, used for targeting purposes. The content partner is represented either by its unique ID or one of its aliases set in Pulse.
