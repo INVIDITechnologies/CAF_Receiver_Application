@@ -40,7 +40,7 @@ You should now see preroll/midroll/postroll ads, based on what you passed in the
 
 ## Debugging a CAF Receiver Application
 
-Open a browser window and point it to the IP address of the Chromecast unit (port 9222). For more information on how to debug from this point, go to Google’s Chromecast Developer Guide topic on [debugging](https://developers.google.com/cast/docs/debugging).
+Open a browser window and point it to the IP address of the Chromecast unit (port 9222). For more information on how to debug from this point, go to Google's Chromecast Developer Guide topic on [debugging](https://developers.google.com/cast/docs/debugging).
 
 ## Publishing the CAF Receiver Application
 
