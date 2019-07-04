@@ -7,5 +7,4 @@ cast-media-player {
     --progress-color: rgb(220, 30, 30);
     --watermark-image: url("media/watermark.png");
     --splash-image: url("media/watermark.png");
-    --skip-ad-title: "Skip ad";
 }

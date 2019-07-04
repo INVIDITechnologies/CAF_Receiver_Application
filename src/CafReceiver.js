@@ -17,7 +17,7 @@ playerManager.setMessageInterceptor(
       const requestUrl = createPulseVmapRequestUrl(vmapParameters.pulseHost, vmapParameters.contentMetadata, vmapParameters.requestSettings);
       console.log("requestUrl: " + requestUrl);
       // VMAP Ads
-      mediaInformation.vmapAdsRequest = {
+      loadRequestData.media.vmapAdsRequest = {
         adTagUrl: requestUrl
       }
     }
